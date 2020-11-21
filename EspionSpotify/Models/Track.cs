@@ -1,4 +1,5 @@
 ﻿using EspionSpotify.MediaTags;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TagLib;
 
@@ -7,13 +8,18 @@ namespace EspionSpotify.Models
     public class Track
     {
         private const string SPOTIFY = "Spotify";
+        public const string UNTITLED_ALBUM = "Untitled";
 
-        public string Artist { get; set; }
-        public string Title { get; set; }
+        private string _artist = null;
+        private string _title = null;
+        private string _titleExtended = null;
+
+        public string Artist { get => _artist; set => _artist = string.IsNullOrEmpty(value) ? null : value; }
+        public string Title { get => _title; set => _title = string.IsNullOrEmpty(value) ? null : value; }
         public bool Ad { get; set; }
         public bool Playing { get; set; }
 
-        public string TitleExtended { get; set; }
+        public string TitleExtended { get => _titleExtended; set => _titleExtended = string.IsNullOrEmpty(value) ? null : value; }
 
         public string Album { get; set; }
         public string[] Genres { get; set; }
@@ -22,10 +28,10 @@ namespace EspionSpotify.Models
         public int? CurrentPosition { get; set; }
         public int? Length { get; set; }
 
-        public string[] Performers { get; internal set; }
-        public uint Disc { get; internal set; }
-        public string[] AlbumArtists { get; internal set; }
-        public uint Year { get; internal set; }
+        public string[] Performers { get; set; }
+        public int? Disc { get; set; }
+        public string[] AlbumArtists { get; set; }
+        public int? Year { get; set; }
 
         public string ArtExtraLargeUrl { get; set; }
         public string ArtLargeUrl { get; set; }
@@ -37,7 +43,7 @@ namespace EspionSpotify.Models
         public byte[] ArtMedium { get; set; }
         public byte[] ArtSmall { get; set; }
 
-        public bool IsNormal() => Artist != null && Title != null && !Ad && Playing;
+        public bool IsNormal { get => !string.IsNullOrEmpty(Artist) && !string.IsNullOrEmpty(Title) && !Ad && Playing; }
 
         public Track() { }
 
@@ -73,32 +79,16 @@ namespace EspionSpotify.Models
             ArtSmall = track.ArtSmall;
         }
 
-        public async Task GetArtExtraLargeAsync()
-        {
-            ArtExtraLarge = await MP3Tags.GetAlbumCover(ArtExtraLargeUrl);
-        }
-        public async Task GetArtLargeAsync()
-        {
-            ArtLarge = await MP3Tags.GetAlbumCover(ArtLargeUrl);
-        }
-        public async Task GetArtMediumAsync()
-        {
-            ArtMedium = await MP3Tags.GetAlbumCover(ArtMediumUrl);
-        }
-        public async Task GetArtSmallAsync()
-        {
-            ArtSmall = await MP3Tags.GetAlbumCover(ArtSmallUrl);
-        }
-
         public override string ToString()
         {
             var song = SPOTIFY;
 
-            if (Artist != null && Title != null)
+            if (!string.IsNullOrEmpty(Artist) && !string.IsNullOrEmpty(Title))
             {
-                song = $"{Artist} - {Title}";
+                var artist = AlbumArtists == null ? Artist : string.Join(",", AlbumArtists);
+                song = $"{artist} - {Title}";
 
-                if (TitleExtended != null)
+                if (!string.IsNullOrEmpty(TitleExtended))
                 {
                     song += $" - {TitleExtended}";
                 }
@@ -116,7 +106,7 @@ namespace EspionSpotify.Models
         {
             var song = Title ?? "";
 
-            if (TitleExtended != null)
+            if (!string.IsNullOrEmpty(TitleExtended))
             {
                 song += $" - {TitleExtended}";
             }
@@ -131,6 +121,7 @@ namespace EspionSpotify.Models
             var otherTrack = (Track)obj;
             return otherTrack.Artist == Artist
                 && otherTrack.Title == Title
+                && otherTrack.TitleExtended == TitleExtended
                 && otherTrack.Ad == Ad;
         }
 

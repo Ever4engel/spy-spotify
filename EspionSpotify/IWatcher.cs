@@ -10,12 +10,9 @@ namespace EspionSpotify
         ISpotifyHandler Spotify { get; set; }
 
         bool RecorderUpAndRunning { get;  }
-        bool NumTrackActivated { get; }
-        bool AdPlaying { get; }
-        string SongTitle { get; }
         bool IsTypeAllowed { get; }
         bool IsOldSong { get; }
 
-        Task Run();
+        void Run();
     }
 }

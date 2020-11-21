@@ -19,7 +19,7 @@ namespace EspionSpotify.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,74 +61,12 @@ namespace EspionSpotify.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string cbOptBitRate128 {
+        internal static System.Drawing.Bitmap add_device {
             get {
-                return ResourceManager.GetString("cbOptBitRate128", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string cbOptBitRate160 {
-            get {
-                return ResourceManager.GetString("cbOptBitRate160", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string cbOptBitRate256 {
-            get {
-                return ResourceManager.GetString("cbOptBitRate256", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string cbOptBitRate320 {
-            get {
-                return ResourceManager.GetString("cbOptBitRate320", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string cbOptBitRateSpotifyFree {
-            get {
-                return ResourceManager.GetString("cbOptBitRateSpotifyFree", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string cbOptBitRateSpotifyPremium {
-            get {
-                return ResourceManager.GetString("cbOptBitRateSpotifyPremium", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string cbOptLangEn {
-            get {
-                return ResourceManager.GetString("cbOptLangEn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string cbOptLangFr {
-            get {
-                return ResourceManager.GetString("cbOptLangFr", resourceCulture);
+                object obj = ResourceManager.GetObject("add_device", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -145,6 +83,16 @@ namespace EspionSpotify.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap faq {
+            get {
+                object obj = ResourceManager.GetObject("faq", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folder {
             get {
                 object obj = ResourceManager.GetObject("folder", resourceCulture);
@@ -153,182 +101,12 @@ namespace EspionSpotify.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string lblAddFolders {
+        internal static System.Drawing.Bitmap heart {
             get {
-                return ResourceManager.GetString("lblAddFolders", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblAddSeparators {
-            get {
-                return ResourceManager.GetString("lblAddSeparators", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblBitRate {
-            get {
-                return ResourceManager.GetString("lblBitRate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblCustomize {
-            get {
-                return ResourceManager.GetString("lblCustomize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblFormat {
-            get {
-                return ResourceManager.GetString("lblFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblLanguage {
-            get {
-                return ResourceManager.GetString("lblLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblMinLength {
-            get {
-                return ResourceManager.GetString("lblMinLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblNumFiles {
-            get {
-                return ResourceManager.GetString("lblNumFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblNumTracks {
-            get {
-                return ResourceManager.GetString("lblNumTracks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblPath {
-            get {
-                return ResourceManager.GetString("lblPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string lblRecordingNum {
-            get {
-                return ResourceManager.GetString("lblRecordingNum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logDeleting {
-            get {
-                return ResourceManager.GetString("logDeleting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logDeletingTooShort {
-            get {
-                return ResourceManager.GetString("logDeletingTooShort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logRecording {
-            get {
-                return ResourceManager.GetString("logRecording", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logSpotifyIsClosed {
-            get {
-                return ResourceManager.GetString("logSpotifyIsClosed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logSpotifyNotRunning {
-            get {
-                return ResourceManager.GetString("logSpotifyNotRunning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logStarting {
-            get {
-                return ResourceManager.GetString("logStarting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logStoping {
-            get {
-                return ResourceManager.GetString("logStoping", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logWaiting {
-            get {
-                return ResourceManager.GetString("logWaiting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string logWriterIsNull {
-            get {
-                return ResourceManager.GetString("logWriterIsNull", resourceCulture);
+                object obj = ResourceManager.GetObject("heart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -339,42 +117,6 @@ namespace EspionSpotify.Properties {
             get {
                 object obj = ResourceManager.GetObject("minus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string msgBodyCantQuit {
-            get {
-                return ResourceManager.GetString("msgBodyCantQuit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string msgBodyPathNotFound {
-            get {
-                return ResourceManager.GetString("msgBodyPathNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string msgTitleCantQuit {
-            get {
-                return ResourceManager.GetString("msgTitleCantQuit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string msgTitlePathNotFound {
-            get {
-                return ResourceManager.GetString("msgTitlePathNotFound", resourceCulture);
             }
         }
         
@@ -449,6 +191,16 @@ namespace EspionSpotify.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap remove_device {
+            get {
+                object obj = ResourceManager.GetObject("remove_device", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon spytify {
@@ -465,69 +217,6 @@ namespace EspionSpotify.Properties {
             get {
                 object obj = ResourceManager.GetObject("spytify_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string tabRecord {
-            get {
-                return ResourceManager.GetString("tabRecord", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string tabSettings {
-            get {
-                return ResourceManager.GetString("tabSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string tipClear {
-            get {
-                return ResourceManager.GetString("tipClear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string tipDirectory {
-            get {
-                return ResourceManager.GetString("tipDirectory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string tipPath {
-            get {
-                return ResourceManager.GetString("tipPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string tipStartSpying {
-            get {
-                return ResourceManager.GetString("tipStartSpying", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string tipStopSying {
-            get {
-                return ResourceManager.GetString("tipStopSying", resourceCulture);
             }
         }
         

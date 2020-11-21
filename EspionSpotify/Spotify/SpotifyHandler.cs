@@ -2,13 +2,15 @@
 using EspionSpotify.Events;
 using EspionSpotify.Models;
 using System;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace EspionSpotify.Spotify
 {
     public class SpotifyHandler: ISpotifyHandler, IDisposable
     {
-        private const int TIMER_INTERVAL = 50;
+        public const int EVENT_TIMER_INTERVAL = 50;
+        public const int SONG_TIMER_INTERVAL = 1000;
 
         public Timer EventTimer { get; private set; }
         public Timer SongTimer { get; private set; }
@@ -31,16 +33,16 @@ namespace EspionSpotify.Spotify
 
         public Track Track { get; set; }
 
-        public SpotifyHandler(ISpotifyAudioSession spotifyAudioSession)
-        {
-            SpotifyProcess = new SpotifyProcess(spotifyAudioSession);
-            AttachTimer(TIMER_INTERVAL);
-        }
-        
+        public SpotifyHandler(IMainAudioSession audioSession): this(
+            spotifyProcess: new SpotifyProcess(audioSession)
+        ) {}
+
         public SpotifyHandler(ISpotifyProcess spotifyProcess)
         {
             SpotifyProcess = spotifyProcess;
-            AttachTimer(TIMER_INTERVAL);
+            EventTimer = new Timer();
+            SongTimer = new Timer();
+            AttachTimerToTickEvent();
         }
 
         public event EventHandler<TrackChangeEventArgs> OnTrackChange;
@@ -49,19 +51,19 @@ namespace EspionSpotify.Spotify
 
         public event EventHandler<TrackTimeChangeEventArgs> OnTrackTimeChange;
 
-        public Track GetTrack()
+        public async Task<Track> GetTrack()
         {
             if (SpotifyLatestStatus == null)
             {
-                return SpotifyProcess.GetSpotifyStatus()?.CurrentTrack;
+                return (await SpotifyProcess.GetSpotifyStatus())?.CurrentTrack;
             }
 
-            return SpotifyLatestStatus.GetTrack();
+            return await SpotifyLatestStatus.GetTrack();
         }
 
-        private void ElapsedEventTick(object sender, ElapsedEventArgs e)
+        public async void ElapsedEventTick(object sender, ElapsedEventArgs e)
         {
-            SpotifyLatestStatus = SpotifyProcess.GetSpotifyStatus();
+            SpotifyLatestStatus = await SpotifyProcess.GetSpotifyStatus();
             if (SpotifyLatestStatus?.CurrentTrack == null)
             {
                 EventTimer.Start();
@@ -82,26 +84,26 @@ namespace EspionSpotify.Spotify
                         SongTimer.Stop();
                     }
 
-                    OnPlayStateChange?.Invoke(this, new PlayStateEventArgs()
+                    await Task.Run(() => OnPlayStateChange?.Invoke(this, new PlayStateEventArgs()
                     {
                         Playing = newestTrack.Playing
-                    });
+                    }));
                 }
                 if (!newestTrack.Equals(Track))
                 {
                     SongTimer.Start();
-                    OnTrackChange?.Invoke(this, new TrackChangeEventArgs()
+                    await Task.Run(async () => OnTrackChange?.Invoke(this, new TrackChangeEventArgs()
                     {
                         OldTrack = Track,
-                        NewTrack = SpotifyLatestStatus.GetTrack()
-                    });
+                        NewTrack = await SpotifyLatestStatus.GetTrack()
+                    }));
                 }
-                if (Track.CurrentPosition != null)
+                if (Track.CurrentPosition != null || newestTrack != null)
                 {
-                    OnTrackTimeChange?.Invoke(this, new TrackTimeChangeEventArgs()
+                    await Task.Run(() => OnTrackTimeChange?.Invoke(this, new TrackTimeChangeEventArgs()
                     {
-                        TrackTime = Track.CurrentPosition ?? 0
-                    });
+                        TrackTime = newestTrack.Equals(Track) ? Track?.CurrentPosition ?? 0 : 0
+                    }));
                 }
             }
             if (newestTrack != null)
@@ -119,21 +121,16 @@ namespace EspionSpotify.Spotify
             Track.CurrentPosition++;
         }
 
-        private void AttachTimer(int interval)
+        private void AttachTimerToTickEvent()
         {
-            EventTimer = new Timer
-            {
-                Interval = interval,
-                AutoReset = false,
-                Enabled = false
-            };
-            SongTimer = new Timer
-            {
-                Interval = interval * 20,
-                AutoReset = true,
-                Enabled = false
-            };
+            EventTimer.Interval = EVENT_TIMER_INTERVAL;
+            EventTimer.AutoReset = false;
+            EventTimer.Enabled = false;
             EventTimer.Elapsed += ElapsedEventTick;
+
+            SongTimer.Interval = SONG_TIMER_INTERVAL;
+            SongTimer.AutoReset = true;
+            SongTimer.Enabled = false;
             SongTimer.Elapsed += ElapsedSongTick;
         }
 

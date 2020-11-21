@@ -5,23 +5,24 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EspionSpotify
 {
     public class SpotifyProcess: ISpotifyProcess
     {
         private readonly int? _spotifyProcessId;
-        private readonly ISpotifyAudioSession _spotifyAudioSession;
+        private readonly IMainAudioSession _audioSession;
 
-        public SpotifyProcess(ISpotifyAudioSession spotifyAudioSession)
+        public SpotifyProcess(IMainAudioSession audioSession)
         {
-            _spotifyAudioSession = spotifyAudioSession;
+            _audioSession = audioSession;
             _spotifyProcessId = GetSpotifyProcesses().FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.Id;
         }
 
-        public ISpotifyStatus GetSpotifyStatus()
+        public async Task<ISpotifyStatus> GetSpotifyStatus()
         {
-            var isSpotifyPlaying = _spotifyAudioSession.IsSpotifyCurrentlyPlaying();
+            var isSpotifyPlaying = await _audioSession.IsSpotifyCurrentlyPlaying();
             var processTitle = GetSpotifyTitle();
 
             if (string.IsNullOrWhiteSpace(processTitle))
@@ -57,7 +58,7 @@ namespace EspionSpotify
             return mainWindowTitle;
         }
 
-        public static ICollection<Process> GetSpotifyProcesses()
+        internal static ICollection<Process> GetSpotifyProcesses()
         {
             var spotifyProcesses = new List<Process>();
 

@@ -6,16 +6,16 @@ namespace EspionSpotify.Tests
     public class TrackTests
     {
         [Fact]
-        private void DefaultTrack_ReturnsEmptyTrack()
+        internal void DefaultTrack_ReturnsEmptyTrack()
         {
             var track = new Track();
 
-            Assert.False(track.IsNormal());
+            Assert.False(track.IsNormal);
             Assert.Equal("Spotify", track.ToString());
         }
 
         [Fact]
-        private void MinimalTrack_ReturnsBasicInfo()
+        internal void MinimalTrack_ReturnsBasicInfo()
         {
             var track = new Track
             {
@@ -26,37 +26,28 @@ namespace EspionSpotify.Tests
                 TitleExtended = "Live"
             };
 
-            Assert.True(track.IsNormal());
+            Assert.True(track.IsNormal);
             Assert.Equal("Artist Name - Song Title - Live", track.ToString());
             Assert.NotEqual(track, new Track());
         }
 
-        [Fact]
-        private async void TrackWithArtsLinks_ReturnsArtsData()
+        [Theory]
+        [InlineData("A", "B", false, true, true)]
+        [InlineData("A", "", false, true, false)]
+        [InlineData("", "B", false, true, false)]
+        [InlineData("", "", false, true, false)]
+        [InlineData(null, null, false, true, false)]
+        [InlineData("A", "B", true, true, false)]
+        [InlineData("A", "B", false, false, false)]
+        internal void IsNormal_ReturnsExpectedNormalResults(string artist, string title, bool ad, bool playing, bool expected)
         {
-            var link = "https://raw.githubusercontent.com/jwallet/spy-spotify/master/psd/spytify-espion-spotify-logo-small.png";
+            var track = new Track() { Artist = artist, Title = title, Ad = ad, Playing = playing };
 
-            var track = new Track
-            {
-                ArtSmallUrl = link,
-                ArtMediumUrl = link,
-                ArtLargeUrl = link,
-                ArtExtraLargeUrl = link
-            };
-
-            await track.GetArtSmallAsync();
-            await track.GetArtMediumAsync();
-            await track.GetArtLargeAsync();
-            await track.GetArtExtraLargeAsync();
-
-            Assert.NotEmpty(track.ArtSmall);
-            Assert.NotEmpty(track.ArtMedium);
-            Assert.NotEmpty(track.ArtLarge);
-            Assert.NotEmpty(track.ArtExtraLarge);
+            Assert.Equal(expected, track.IsNormal);
         }
 
         [Fact]
-        private void TrackWithInitialTrack_ReturnsUpdatedTrack()
+        internal void TrackWithInitialTrack_ReturnsUpdatedTrack()
         {
             var initialTrack = new Track
             {
@@ -70,12 +61,43 @@ namespace EspionSpotify.Tests
             var track = new Track(initialTrack)
             {
                 Album = "Album",
-                AlbumPosition = 1
+                AlbumPosition = 1,
+                ArtExtraLargeUrl = "http://logo.png",
             };
 
             Assert.Equal(initialTrack.ToString(), track.ToString());
             Assert.NotEqual(initialTrack.Album, track.Album);
+            Assert.NotEqual(initialTrack.ArtExtraLargeUrl, track.ArtExtraLargeUrl);
             Assert.NotEqual(track, new Track());
+        }
+
+        [Fact]
+        internal void ToTitleString_ReturnsTitleAndExtendedTitle()
+        { 
+            Assert.Equal("", new Track().ToTitleString());
+            Assert.Equal("Title", new Track { Title = "Title", Artist = "Artist", TitleExtended = "" }.ToTitleString());
+            Assert.Equal("Title - Remastered", new Track { Title = "Title", Artist = "Artist", TitleExtended = "Remastered" }.ToTitleString());
+        }
+
+        [Fact]
+        internal void TrackEquals_ReturnsAsExpected()
+        {
+            var trackEmpty = new Track();
+            var trackDetailled = new Track()
+            {
+                Title = "Title",
+                Artist = "Artist",
+                TitleExtended = "",
+                Ad = false,
+            };
+
+            Assert.True(trackEmpty.Equals(trackEmpty));
+            Assert.True(trackEmpty.Equals(new Track()));
+            Assert.True(trackDetailled.Equals(new Track { Title = "Title", Artist = "Artist" }));
+
+            Assert.False(trackEmpty.Equals(null));
+            Assert.False(trackEmpty.Equals(new OutputFile()));
+            Assert.False(trackEmpty.Equals(new Track() { Title = "Title" }));
         }
     }
 }

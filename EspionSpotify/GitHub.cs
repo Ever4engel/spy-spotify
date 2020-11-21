@@ -9,19 +9,24 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using EspionSpotify.Models;
+using System.Threading.Tasks;
 
 namespace EspionSpotify
 {
     internal static class GitHub
     {
-        private const string REPO_RELEASE_LINK = "https://api.github.com/repos/jwallet/spy-spotify/releases/latest";
+        private const string API_LATEST_RELEASE_URL = "https://api.github.com/repos/jwallet/spy-spotify/releases/latest";
         private const string SPYTIFY = "Spytify";
 
-        public static async void GetVersion()
+        public const string WEBSITE_FAQ_URL = "https://jwallet.github.io/spy-spotify/faq.html";
+        public const string WEBSITE_DONATE_URL = "https://jwallet.github.io/spy-spotify/donate.html";
+        public const string REPO_LATEST_RELEASE_URL = "https://github.com/jwallet/spy-spotify/releases/latest";
+
+        public static async Task GetVersion()
         {
-            if (!Uri.TryCreate(REPO_RELEASE_LINK, UriKind.Absolute, out var uri)) return;
+            if (!Uri.TryCreate(API_LATEST_RELEASE_URL, UriKind.Absolute, out var uri)) return;
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var request = (HttpWebRequest)WebRequest.Create(uri);
@@ -52,13 +57,13 @@ namespace EspionSpotify
                     if (githubTagVersion <= assemblyVersion) return;
                     if (Settings.Default.LastVersionPrompted.ToVersion() == githubTagVersion) return;
 
-                    var dialogTitle = string.Format(FrmEspionSpotify.Rm.GetString($"msgNewVersionTitle"), githubTagVersion);
-                    var dialogMessage = FrmEspionSpotify.Rm.GetString($"msgNewVersionContent");
+                    var dialogTitle = string.Format(FrmEspionSpotify.Instance.Rm.GetString(I18nKeys.MsgNewVersionTitle), githubTagVersion);
+                    var dialogMessage = FrmEspionSpotify.Instance.Rm.GetString(I18nKeys.MsgNewVersionContent);
 
                     if (!string.IsNullOrEmpty(release.body))
                     {
                         var releaseBodySplitted = release.body.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                        dialogMessage = $"{releaseBodySplitted.Take(5).Aggregate((current, next) => $"{current}\n{next}")}\r\n{dialogMessage}";
+                        dialogMessage = $"{releaseBodySplitted.Take(4).Aggregate((current, next) => $"{current}\n{next}")}\r\n{dialogMessage}";
                     }
 
                     var dialogResult = MetroFramework.MetroMessageBox.Show(
@@ -81,6 +86,7 @@ namespace EspionSpotify
             {
                 content.Dispose();
                 Console.WriteLine(ex.Message);
+                Program.ReportException(ex);
             }
         }
     }

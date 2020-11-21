@@ -142,7 +142,7 @@
     <comment>interface</comment>
   </data>
   <data name="lblAddFolders" xml:space="preserve">
-    <value>Regrouper les chansons d'un même artiste dans un dossier au nom de l'artiste</value>
+    <value>Regrouper les pistes audio dans leur propre dossier</value>
     <comment>interface</comment>
   </data>
   <data name="lblAddSeparators" xml:space="preserve">
@@ -155,10 +155,6 @@
   </data>
   <data name="lblBitRate" xml:space="preserve">
     <value>Qualité audio:</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblDisableAds" xml:space="preserve">
-    <value>Désactiver le plus de publicités audio de Spotify</value>
     <comment>interface</comment>
   </data>
   <data name="lblEndingSongDelay" xml:space="preserve">
@@ -182,11 +178,11 @@
     <comment>interface</comment>
   </data>
   <data name="lblNumFiles" xml:space="preserve">
-    <value>Inscrire au début du nom des fichiers enregistrés l'ordre d'enregistrement</value>
+    <value>Inscrire au début du nom des fichiers enregistrés la valeur du compteur</value>
     <comment>interface</comment>
   </data>
   <data name="lblNumTracks" xml:space="preserve">
-    <value>Remplacer le numéro de position cd (album track) par l'ordre d'enregistrement</value>
+    <value>Remplacer le numéro de position cd (album track) par la valeur du compteur</value>
     <comment>interface</comment>
   </data>
   <data name="lblPath" xml:space="preserve">
@@ -198,7 +194,7 @@
     <comment>interface</comment>
   </data>
   <data name="lblRecordingNum" xml:space="preserve">
-    <value>Modifier la position de départ du compteur de l'ordre d'enregistrement</value>
+    <value>Modifier la position de départ du compteur</value>
     <comment>interface</comment>
   </data>
   <data name="lblRecordUnknownTrackType" xml:space="preserve">
@@ -213,24 +209,8 @@
     <value>Annonce</value>
     <comment>console</comment>
   </data>
-  <data name="logAdPlaying" xml:space="preserve">
-    <value>// Une publicité est en train de jouer.</value>
-    <comment>console</comment>
-  </data>
   <data name="logDeleting" xml:space="preserve">
-    <value>// Effacement de: {0}</value>
-    <comment>console</comment>
-  </data>
-  <data name="logDeletingTooShort" xml:space="preserve">
-    <value>// Effacement de: {0} [&lt; {1}s]</value>
-    <comment>console</comment>
-  </data>
-  <data name="logInvalidOutput" xml:space="preserve">
-    <value>// Erreur lors de l'enregistrement: Le répertoire de sauvegarde est introuvable.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="logOther" xml:space="preserve">
-    <value>Inconnu</value>
+    <value>Effacement de: {0} [&lt; {1}s]</value>
     <comment>console</comment>
   </data>
   <data name="logRecording" xml:space="preserve">
@@ -261,12 +241,8 @@
     <value>// Fin de l'espionnage.</value>
     <comment>console</comment>
   </data>
-  <data name="logWaiting" xml:space="preserve">
-    <value>// En attente du prochain titre...</value>
-    <comment>console</comment>
-  </data>
   <data name="logUnsupportedRate" xml:space="preserve">
-    <value>// Erreur lors de l'enregistrement: Format audio de votre ordinateur non supporté. Le format doit être '2 canaux, 24 bit, 48000 Hz (Studio Quality)' (Panneau de configuration &gt; Son &gt; Propriétés &gt; Avancés).</value>
+    <value>// Attention: Le taux d'échantillon audio de {0}Hz n'est pas supporté. L'audio sera encodé en 48000Hz.</value>
     <comment>console</comment>
   </data>
   <data name="msgBodyCantQuit" xml:space="preserve">
@@ -275,14 +251,6 @@
   </data>
   <data name="msgBodyPathNotFound" xml:space="preserve">
     <value>Le répertoire de sauvegarde sélectionné n'existe pas, sélectionner un autre.</value>
-    <comment>message</comment>
-  </data>
-  <data name="msgEnsureAdminContent" xml:space="preserve">
-    <value>Spytify doit redémarrer pour obtenir les droits d'administrateur et pouvoir désactiver les publicités de Spotify. Voulez-vous poursuivre et réessayer?</value>
-    <comment>message</comment>
-  </data>
-  <data name="msgEnsureAdminTitle" xml:space="preserve">
-    <value>Droits d'administrateur requis</value>
     <comment>message</comment>
   </data>
   <data name="msgNewVersionContent" xml:space="preserve">
@@ -333,80 +301,16 @@
     <value>Arrêter l'espionnage</value>
     <comment>interface</comment>
   </data>
-  <data name="lblAdAndTrackOverlapOnRecordedTrack" xml:space="preserve">
-    <value>Utilisez Audacity (un éditeur gratuit pour fichiers audio) pour couper les parties audio que vous voulez retirer. Spytify ne peut garantir qu'une annonce ou la prochaine piste audio sera détectée correctement puisqu'il se base sur peu d'informations disponible dans le processus de Spotify qui ne sont pas toujours précises.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblAdsPlayAndStop" xml:space="preserve">
-    <value>La fonctionnalité de Spytify "Désactiver les publicités" peut affecté la façon dont une annonce inconnue joue quand elle ne peut être bloquée. Essayez de ré-activer ce paramètre une fois de plus pour obtenir les derniers domaines de publicités bloqués ou désactivez ce paramètre et redémarrez les deux applications.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblBackgroundNoiceRecordedOnTrack_first" xml:space="preserve">
-    <value>Premier cas, Spytify désactive la plupart des applications quand la session d'enregistrement débute. Veuillez couper le son par le "Mélangeur de volume" des applications exécutées dans un processus d'arrière-plan dans la barre d'état système pouvant émettre un son ainsi que tout autre application que vous utilisez durant la session d'enregistrement. Seulement Spotify et Spytify ne doivent pas être à muet.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblSpotifyTrackCut" xml:space="preserve">
-    <value>Spotify recherche les fichiers de musique localement avant de jouer une piste audio, si il en trouve une avec les méta données que la piste audio courante, il jouera la piste audio local à la place. Des pistes audio coupées signifient que vous avez, une fois, commencer une session d'enregistrement et l'avez terminé trop tôt. Il faut juste supprimer les pistes audio incomplètes dans votre répertoire de musique pour résoudre le problème.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblTrackDetectedAsAd" xml:space="preserve">
-    <value>Podcast, livre audio et tout autre piste de type non commun sont détectés en tant que publicité. Également, Spotify ne retourne pas les bonnes informations à Spytify lorsque vous basculez entre radios, listes de lecture ou albums, résultant en une piste audio détectée en tant que publicté. Si ceci se produit, rejouer la piste courante, si ceci se produit trop souvent, sauvegarder vos pistes dans une playlist et jouer la. Spytify ne peut garantir qu'une piste audio sera détectée correctement puisqu'il se base sur peu d'informations disponible dans le processus de Spotify qui ne sont pas toujours précises.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tabFAQ" xml:space="preserve">
-    <value>F.A.Q.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tlAdAndTrackOverlapOnRecordedTrack" xml:space="preserve">
-    <value>Annonces et pistes audio chevauchent au début/fin d'une piste audio enregistrée.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tlAdsPlayAndStop" xml:space="preserve">
-    <value>Spotify joue encore des annonces après les avoir désactivées et il se met sur pause/joue à chaque seconde.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tlBackgroundNoiceRecordedOnTrack" xml:space="preserve">
-    <value>Du son/bruit d'arrière fond a été enregistré dans le fichier de la piste audio.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tlSpotifyTrackCut" xml:space="preserve">
-    <value>Spotify joue seulement un bout d'une piste audio, ça coupe après quelques secondes.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tlTrackDetectedAsAd" xml:space="preserve">
-    <value>Pistes audio sont détectées en tant que publicité</value>
-    <comment>interface</comment>
-  </data>
   <data name="logUnknownException" xml:space="preserve">
-    <value>// Erreur lors de l'enregistrement: Exception inconnue</value>
-    <comment>message</comment>
-  </data>
-  <data name="logNoAccessOutput" xml:space="preserve">
-    <value>// Erreur lors de l'enregistrement: L'accès au répertoire de sauvegarde est refusé, éxécutez Spytify en tant qu'administrateur ou changez le pour un autre.</value>
+    <value>// Erreur: Exception inconnue: {0}</value>
     <comment>console</comment>
   </data>
-  <data name="msgBodyDisableAds" xml:space="preserve">
-    <value>En désactivant les annonces, vous bloquerez les annonces provenant de partenaires (domaines tiers). Spotify pourra quand même jouer leurs propre annonces, puisqu'elles viennent du même domaine que leur contenu musical, radio, liste d'amis et "daily mix".</value>
-    <comment>message</comment>
-  </data>
-  <data name="msgTitleDisableAds" xml:space="preserve">
-    <value>Désactiver les annonces</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblDuplicateAlreadyRecordedTrack" xml:space="preserve">
-    <value>Dupliquer les pistes audio déjà enregistrées au lieu de passer au prochain.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblSpotifyLostFeatures" xml:space="preserve">
-    <value>Quand vous activez "Désactiver les publicités" dans les paramètres Spotify, vous acceptez que ces fonctionnalités ne pourront être disponible, c'est pour s'assurer que le plus d'annonces possible soient désactivées. Parcontre, vous pouvez vous rendre ici "C:\Windows\System32\drivers\etc\host" pour modifier le fichier avec bloc-notes, recherchez le domaine "spclient.wg.spotify.com" et ajoutez un "#" au début de la ligne pour le rendre inactif.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tlSpotifyLostFeatures" xml:space="preserve">
-    <value>Spotify a perdu quelques fonctionnalités après avoir désactivé les publicités: Liste d'amis, radio, mixes journaliers et podcasts.</value>
+  <data name="lblRecordOverRecordings" xml:space="preserve">
+    <value>Enregistrer les pistes audio déjà enregistrées au lieu de passer au prochain.</value>
     <comment>interface</comment>
   </data>
   <data name="logUnsupportedNumberChannels" xml:space="preserve">
-    <value>// Erreur lors de l'enregistrement: L'enregistrement multi-canaux de fichiers n'est pas supporté ({0} canaux), veuillez réduire le nombre de canaux à 2 (stéréo) ou 1 (mono).</value>
+    <value>// Attention: L'audio {0}-canaux n'est pas supporté. L'audio sera encodé en stéréo (2).</value>
     <comment>console</comment>
   </data>
   <data name="tipRelease" xml:space="preserve">
@@ -415,10 +319,6 @@
   </data>
   <data name="lblAudioDevice" xml:space="preserve">
     <value>Périphérique audio:</value>
-    <comment>interface</comment>
-  </data>
-  <data name="cbDefault" xml:space="preserve">
-    <value>Défaut</value>
     <comment>interface</comment>
   </data>
   <data name="lblRecordingTimer" xml:space="preserve">
@@ -430,34 +330,63 @@
     <comment>console</comment>
   </data>
   <data name="logSpotifyPlayingOutsideOfSelectedAudioEndPoint" xml:space="preserve">
-    <value>// Spytify ne peut enregistré s'il n'utilise pas le même périphérique audio que Spotify. Voir la F.A.Q pour savoir comment déplacer Spotify vers un autre périphérique.</value>
+    <value>// Spytify ne peut enregistrer s'il n'utilise pas le même périphérique audio que Spotify. Voir la F.A.Q en ligne pour savoir comment déplacer Spotify vers un autre périphérique.</value>
     <comment>console</comment>
   </data>
   <data name="logStopRecordingWhenSongEnds" xml:space="preserve">
     <value>// En attente de la fin de l'enregistrement de la piste audio courante</value>
     <comment>console</comment>
   </data>
-  <data name="lblSpotifyAudioEndpoint" xml:space="preserve">
-    <value>En utilisant le paramètre de Spotify ''Périphérique audio'', vous pouvez déplacer Spytify vers un différent périphérique audio et utiliser le paramètre de Windows 10 pour déplacer Spotify vers le même périphérique audio. Cliquez sur Windows et tapez ''Paramètres de mélangeur audio'', vous devriez arriver sur la page de paramètres appelée ''Volume d'application et préférences de volume'', soyez certain que Spotify est en train de jouer et paramétrez l'application vers le bon périphérique avec la liste déroulante ''Sortie''. Redémarrez Spotify. Spotify et Spytify devraient maintenant être isôlés de n'importe quel son indésiré. Si vous ne pouvez trouver l'option Windows, visitez la section ''Paramètres Windows 10'' &gt; ''Système'' &gt; ''Son'', descendez le menu jusqu'à la section ''Paramètres de son avancés" &gt; ''Préférences de volume d'application et de périphériques''.</value>
-    <comment>interface</comment>
-  </data>
-  <data name="tlSpotifyAudioEndpoint" xml:space="preserve">
-    <value>Isoler l'audio de Spotify vers un différent périphérique audio</value>
-    <comment>interface</comment>
-  </data>
-  <data name="lblBackgroundNoiceRecordedOnTrack_second" xml:space="preserve">
-    <value>Deuxième cas, il se peut qu'à l'écoute des fichiers audio vous entendiez des sons (pops et craquements) jouant à des moments précis. Ces sons peuvent être liéés au fait que votre ordinateur n'a pas le processeur de configuré à haute performance. Vous pouvez l'activer dans vos paramètres de plan d'alimentation ou en changeant la puissance minimale du processeur a 100 (voir sur internet pour un coment-faire). Ces sons peut être également liéés au fait que vous avez paramétré une qualité (bitrate) différente de Spotify à Spytify. Vous devez vous assurer d'avoir mis la qualité correspondant à votre version de Spotify. Spotify Free ne peut avoir une qualité de Spotify Premium. Si vous avez Premium, vous devez cocher dans vos paramètres l'option "Haute Qualité 320kbps" pour bénéficier de l'enregistrement à 320kbps avec Spytify.can be related to your computer not being set to high cpu performance.</value>
-    <comment>interface</comment>
-  </data>
   <data name="logPreviousLogs" xml:space="preserve">
     <value>// Le registre de la session d'enregistrement précédente</value>
     <comment>console</comment>
   </data>
   <data name="logRecorded" xml:space="preserve">
-    <value>Enregistré {0} en : {1}</value>
+    <value>Enregistré {0} en: {1}</value>
     <comment>console</comment>
   </data>
   <data name="logTrackExists" xml:space="preserve">
     <value>// Passe: {0} (l'enregistrement existe déjà)</value>
+    <comment>console</comment>
+  </data>
+  <data name="logMissingDlls" xml:space="preserve">
+    <value>// Erreur: Fichiers DLL manquants - libmp3lame.32.dll et libmp3lame.64.dll</value>
+    <comment>console</comment>
+  </data>
+  <data name="msgFolderDialog" xml:space="preserve">
+    <value>Veuillez choisir le dossier où vous désirez sauvegarder les fichiers audio enregistrés.</value>
+    <comment>interface</comment>
+  </data>
+  <data name="msgBodyDriverInstallationFailed" xml:space="preserve">
+    <value>Erreur lors de l'ouverture du controlleur Audio Virtual Cable.</value>
+    <comment>message</comment>
+  </data>
+  <data name="tipInstallVirtualCableDriver" xml:space="preserve">
+    <value>Installer Audio Virtual Cable</value>
+    <comment>interface</comment>
+  </data>
+  <data name="tipUninstallVirtualCableDriver" xml:space="preserve">
+    <value>Désinstaller Audio Virtual Cable</value>
+    <comment>interface</comment>
+  </data>
+  <data name="tipDonate" xml:space="preserve">
+    <value>Faire un don à Spytify</value>
+    <comment>interface</comment>
+  </data>
+  <data name="tipFAQ" xml:space="preserve">
+    <value>Voir la F.A.Q.</value>
+    <comment>interface</comment>
+  </data>
+  <data name="lblDuplicate" xml:space="preserve">
+    <value>Dupliquer</value>
+    <comment>interface</comment>
+  </data>
+  <data name="logMaxFileSequenceReached" xml:space="preserve">
+    <value>// Compteur: Max de la séquence de préfix de fichier de {0} atteint</value>
+    <comment>console</comment>
+  </data>
+  <data name="tipNumModifierHold" xml:space="preserve">
+    <value>CTRL affecte la valeur du masque</value>
+    <comment>interface</comment>
   </data>
 </root>

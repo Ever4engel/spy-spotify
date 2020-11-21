@@ -2,7 +2,9 @@
 {
     public enum LanguageType
     {
-         en = 0,
-         fr
+        en = 0,
+        de, // German
+        fr, // French
+        nl // Dutch
     }
 }

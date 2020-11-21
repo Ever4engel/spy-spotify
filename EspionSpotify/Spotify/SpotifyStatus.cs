@@ -2,12 +2,17 @@
 using EspionSpotify.Models;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EspionSpotify.Spotify
 {
     public class SpotifyStatus: ISpotifyStatus
     {
         public const string SPOTIFY = "spotify";
+        public const string SPOTIFYFREE = "spotify free";
+        public const string ADVERTISEMENT = "advertisement";
+
+        public static string[] SpotifyTitles = new[] { SPOTIFY, SPOTIFYFREE };
 
         public Track CurrentTrack { get; set; }
 
@@ -15,7 +20,12 @@ namespace EspionSpotify.Spotify
 
         public static bool WindowTitleIsSpotify(string title)
         {
-            return title?.ToLowerInvariant().Equals(SPOTIFY) ?? false;
+            return SpotifyTitles.Contains(title?.ToLowerInvariant());
+        }
+
+        public static bool WindowTitleIsAd(string title)
+        {
+            return title?.ToLowerInvariant() == ADVERTISEMENT;
         }
 
         public SpotifyStatus(SpotifyWindowInfo spotifyWindowInfo)
@@ -24,11 +34,11 @@ namespace EspionSpotify.Spotify
             SetSongInfo(ref spotifyWindowInfo);
         }
 
-        public Track GetTrack()
+        public async Task<Track> GetTrack()
         {
-            if (!CurrentTrack.IsNormal()) return CurrentTrack;
+            if (!CurrentTrack.IsNormal) return CurrentTrack;
 
-            ExternalAPI.Instance.UpdateTrack(CurrentTrack);
+            await ExternalAPI.Instance.UpdateTrack(CurrentTrack);
             return CurrentTrack;
         }
 
@@ -37,7 +47,7 @@ namespace EspionSpotify.Spotify
             var tags = spotifyWindowInfo.WindowTitle.Split(_windowTitleSeparator, 3, StringSplitOptions.None);
 
             var isPlaying = spotifyWindowInfo.IsPlaying || !spotifyWindowInfo.IsTitledSpotify;
-            var isAd = tags.Length < 2;
+            var isAd = tags.Length < 2 || spotifyWindowInfo.IsTitledAd;
 
             CurrentTrack = new Track
             {
